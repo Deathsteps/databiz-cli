@@ -2,6 +2,8 @@
 
 > 该规范旨在约定一般中台系统最基本的数据表CRUD处理流程，数据字段命名等
 
+注：本规范聚焦Action与State, UI表现（笔者认为路由也是UI表现的一部分）不在本文档讨论范围内。
+
 ## 基本数据处理操作
 
 #### UI交互表现
@@ -133,16 +135,19 @@ batchDeleteResult | ?Object | 批量删除成功对象
 
 model：业务实体表， action：动作
 
-* 异步动作
+* 动作约定
+
+一般动作是 `[model]/[action]`。一般动作之外，常见的是一种异步动作，该动作事实上是多步动作的一种特例（Task）。对此做以下约定
+
 ```
 请求 [model]/[action]/request
 成功 [model]/[action]/success
 失败 [model]/[action]/failure
 ```
 
-* 一般状态树
+* 状态树约定
 
-这里采取按页分State的方法
+这里采取按视图分State的方法
 
 ```
 列表 [model]List
@@ -150,6 +155,37 @@ model：业务实体表， action：动作
 编辑 [model]Editor
 ```
 
-* 聚合状态树
+按视图分State有个大的需求，即状态树聚合。以数据列表视图为例，它可能有两个基本操作：获取列表、删除某条记录。所以，该视图的聚合State也应该是这两个操作的State聚合。（注意：由于State需要聚合，所以子操作的State在名称上需互不冲突）
 
-以数据列表页为例，它可能有两个基本操作：获取列表、删除某条记录。所以，该页的聚合State也应该是这两个操作的State聚合。
+视图拆分State最好的地方在，模态窗口可归类为一种视图，它本质上和一个页面没有本质区别。
+
+* App总线动作及状态
+
+
+通知操作
+
+在App的任意位置，都可以发出通知行为，我们希望统一处理这些。所以定义
+
+
+状态字段 | 类型 | 描述
+-------|-----|-------
+alertMessage | ?string | 通知信息
+alertTitle | string | 通知标题
+alertDisplayed | boolean | 是否显示通知
+alertType | Enum("warning"|"error"|"info") | 通知类型
+
+
+动作名 | payload
+-------|---------
+app/notify/show | { title: string, message: string, type: "warning"|"error"|"info" }
+app/notify/hide | null
+
+
+* Component动作及状态
+
+在通用组件之外，我们往往需要有一套业务组件。该组件有两方式引入系统
+
+  * 作为第三方组件引入
+  * 放在项目某个目录中，相对路径引入
+
+针对第二种方式，建议所有的组件以`comp[ComponentName]`作为之前约定的model。
