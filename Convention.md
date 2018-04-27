@@ -15,6 +15,7 @@
   * 树形
 
 * 数据列表上的单条操作
+
   * 编辑单一字段
   * 删除某条数据
 
@@ -172,13 +173,14 @@ model：业务实体表， action：动作
 alertMessage | ?string | 通知信息
 alertTitle | string | 通知标题
 alertDisplayed | boolean | 是否显示通知
-alertType | Enum("warning"|"error"|"info") | 通知类型
+alertType | Enum("warning"\|"error"\|"info") | 通知类型
 
 
 动作名 | payload
 -------|---------
-app/notify/show | { title: string, message: string, type: "warning"|"error"|"info" }
+app/notify/show | { title: string, message: string, type: "warning"\|"error"\|"info" }
 app/notify/hide | null
+
 
 
 * Component动作及状态
