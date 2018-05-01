@@ -1,0 +1,16 @@
+{
+  "name": "databiz-cli",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Deathsteps/databiz-cli.git"
+  },
+  "version": "0.1.0",
+  "bin": {
+    "cli": "bin/cli.js"
+  },
+  "dependencies": {
+    "commander": "^2.15.1"
+  },
+  "scripts": {},
+  "license": "MIT"
+}

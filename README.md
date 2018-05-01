@@ -7,7 +7,7 @@
 
 ```shell
 cd projectDir
-databiz-cli g modelName
+databiz-cli create modelName
 
 ```
 
