@@ -16,6 +16,15 @@ This script will generate CRUD actions for the specified model.
 * For react + redux project, it will generate state reducers as well.
 * For vue + vuex project, it will generate state, mutations and actions as well.
 
+#### Setup React project
+
+```shell
+create-react-app projectName
+cd projectName
+npm run eject
+databiz-cli setup
+```
+
 ## Project Struture
 
 React Project

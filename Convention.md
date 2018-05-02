@@ -178,9 +178,8 @@ alertType | Enum("warning"\|"error"\|"info") | 通知类型
 
 动作名 | payload
 -------|---------
-app/notify/show | { title: string, message: string, type: "warning"\|"error"\|"info" }
-app/notify/hide | null
-
+app/alert/show | { title: string, message: string, type: "warning"\|"error"\|"info" }
+app/alert/hide | null
 
 
 * Component动作及状态
