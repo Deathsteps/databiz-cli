@@ -18,11 +18,17 @@ This script will generate CRUD actions for the specified model.
 
 #### Setup React project
 
+Basic Setup
 ```shell
 create-react-app projectName
 cd projectName
 npm run eject
 databiz-cli setup
+```
+
+Setup with Less and Ant Design Components
+```shell
+databiz-cli --less --antd setup ./
 ```
 
 ## Project Struture
