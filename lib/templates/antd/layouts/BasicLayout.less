@@ -1,0 +1,136 @@
+@import "~antd/lib/style/themes/default.less";
+
+.layout {
+  height: 100%;
+
+  .container-spin {
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    margin-left: -25px;
+    z-index: 15;
+  }
+}
+
+.layout-header {
+  padding-left: 0;
+  background: @primary-7;
+
+  .menu-trigger {
+    height: 100%;
+    display: inline-block;
+    width: 58px;
+    text-align: center;
+
+    &:hover {
+      background: @primary-8;
+    }
+
+    i {
+      font-size: 24px;
+      color: #fff;
+    }
+  }
+
+  .home-link {
+    display: inline-block;
+    height: 100%;
+    color: #fff;
+    font-size: 22px;
+    padding: 0 8px;
+    // font-family: monospace;
+    // text-transform: uppercase;
+  }
+
+  .user {
+    float: right;
+    height: 100%;
+    color: #fff;
+
+    .notification, .account {
+      cursor: pointer;
+      padding: 0 16px;
+      display: inline-block;
+      transition: all .3s;
+      height: 100%;
+      .anticon {
+        font-size: 16px;
+        vertical-align: middle;
+        color: #fff;
+      }
+      &:hover {
+        background: @primary-8;
+      }
+    }
+
+    .avatar {
+      margin: 0 8px 0 0;
+      color: @primary-color;
+      background: rgba(255, 255, 255, .85);
+      vertical-align: middle;
+    }
+  }
+}
+
+.layout-sider {
+  background: #fff;
+  height: 100%;
+
+  .logo {
+    display: block;
+    margin: 16px 8px;
+  }
+}
+
+.layout-menu {
+  border-right: none;
+}
+
+.layout-content {
+  padding: 18px 12px 0 18px;
+  height: 100%;
+
+  .view {
+    padding: 16px;
+    font-size: @font-size-lg;
+    background-color: #fff;
+  }
+
+  .view-grey {
+    background-color: @layout-body-background;
+    font-size: @font-size-lg;
+    padding: 0;
+  }
+
+  .view-header {
+    position: relative;
+    border-bottom: @border-width-base @border-style-base @border-color-split;
+    margin-bottom: 12px;
+
+    a {
+      position: absolute;
+      top: 6px;
+      right: 20px;
+    }
+  }
+
+  .view-grey-header {
+    position: relative;
+    background: white;
+    margin: -18px 0 0;
+    padding: 12px 24px;
+    border: @border-width-base @border-style-base @border-color-split;
+
+    a {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+    }
+  }
+  .view-grey-footer {
+    text-align: right;
+    background: white;
+    margin-top: 24px;
+    padding: 12px 24px;
+  }
+}

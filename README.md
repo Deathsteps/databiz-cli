@@ -7,8 +7,7 @@
 
 ```shell
 cd projectDir
-databiz-cli create modelName
-
+databiz-cli generate
 ```
 
 This script will generate CRUD actions for the specified model.

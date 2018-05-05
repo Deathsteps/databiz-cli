@@ -1,0 +1,106 @@
+@import "~antd/lib/style/themes/default.less";
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
+.filter {
+  .ant-form-item-label label {
+    font-size: 14px;
+  }
+
+  .ant-form-item {
+    margin-bottom: 12px;
+    margin-right: 0;
+    display: flex;
+
+    > .ant-form-item-label {
+      width: auto;
+      padding-right: 8px;
+    }
+  }
+
+  .ant-form-item-control-wrapper {
+    flex: 1;
+  }
+}
+
+.data-table {
+  margin-top: 24px;
+  background: white;
+  padding: 8px;
+}
+
+.inline-form-item {
+  .ant-form-item {
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
+
+// useful common class
+.hidden {
+  display: none;
+}
+
+.disabled-link {
+  color: @disabled-color;
+  &:hover {
+    color: @disabled-color;
+  }
+}
+
+.spin-mask {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 15% 0 0 50%;
+  background-color: #fff;
+  opacity: 0.5;
+}
+
+.info-panel {
+  h2, h4 {
+    margin-bottom: 0
+  }
+  .trigger {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+  }
+}
+
+.lnk-lock {
+
+}
+.lnk-unlock {
+  color: @red-6;
+  &:hover {
+    color: @red-4;
+  }
+}
+
+.lnk-button {
+  display: inline-block;
+  border: @border-width-base @border-style-base @primary-color;
+  border-radius: @border-radius-base;
+  height: @btn-height-base;
+  padding: @btn-padding-base;
+  font-size: 12px;
+  line-height: @btn-height-base;
+  vertical-align: middle;
+  box-sizing: content-box;
+}
+
+.price {
+  color: @orange-6;
+}
