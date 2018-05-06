@@ -8,6 +8,7 @@ program
   .version('0.1.0')
   .option('-l, --less', 'Use less as css preprocessor')
   .option('-a, --antd', 'Use antd components')
+  .option('-m, --mock', 'Setup a mock server')
 
 var setup = require('../lib/setup')
 program
