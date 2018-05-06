@@ -71,3 +71,10 @@ All files will be created in models directory
         ├── Editor.jsx
         └── Editor.less
 ```
+
+## Todo List
+
+1. Mock tools
+
+`cli setup --mock`
+`cli mock [model]`

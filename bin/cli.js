@@ -17,12 +17,12 @@ program
     setup(projectName, program)
   })
 
-var create = require('../lib/create')
+var generate = require('../lib/generate')
 program
-  .command('create [modelName]')
-  .description('Create CRUD actions')
-  .action(function (modelName) {
-    create(modelName)
+  .command('generate')
+  .description('Generate code')
+  .action(function () {
+    generate()
   })
 
 program
