@@ -7,6 +7,7 @@ var program = require('commander')
 program
   .version('0.1.0')
   .option('-l, --less', 'Use less as css preprocessor')
+  .option('-lo, --lodash', 'Use lodash')
   .option('-a, --antd', 'Use antd components')
   .option('-m, --mock', 'Setup a mock server')
 
