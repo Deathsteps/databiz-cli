@@ -1,0 +1,76 @@
+//@flow
+import request from '../request'
+// import { rand } from '../utils'
+
+export type [[Model]]Detail = [[modelDetailTypeStr]]
+export type [[Model]] = [[modelTypeStr]]
+export type [[Model]]List = {
+  totalCount: number,
+  list: ?[[Model]][]
+}
+
+function build[[Model]]List (rawData: Object): [[Model]]List {
+  return {
+    totalCount: rawData.totalCount,
+    // build list from raw data
+    list: rawData.list
+  }
+}
+export function request[[Model]]List (params: Object): Promise<[[Model]]List> {
+  return new Promise(function(resolve, reject) {
+    // build query parameters
+    let query: Object = {
+    }
+    // request api
+    request('/api/[[model]]/list', query).then(
+      rawData => resolve(build[[Model]]List(rawData)),
+      reject
+    )
+  });
+}
+
+function build[[Model]]Detail (rawData: Object): [[Model]]Detail {
+  return rawData
+}
+export function request[[Model]]Detail (params: Object): Promise<[[Model]]Detail> {
+  return new Promise(function(resolve, reject) {
+    // build query parameters
+    let query: Object = {
+      id: params.id
+    }
+    // request api
+    request('/api/[[model]]', query).then(
+      rawData => resolve(build[[Model]]Detail(rawData)),
+      reject
+    )
+  });
+}
+
+function build[[Model]]Update (params): Object {
+  return {}
+}
+export function request[[Model]]Update (params: Object): Promise<Object> {
+  return new Promise(function(resolve, reject) {
+    // build query parameters
+    let query: Object = build[[Model]]Update(params)
+    // request api
+    request('/api/[[model]]/update', query).then(
+      rawData => resolve({ success: true, id: params.id }),
+      reject
+    )
+  });
+}
+
+export function request[[Model]]Delete (params: Object): Promise<Object> {
+  return new Promise(function(resolve, reject) {
+    // build query parameters
+    let query: Object = {
+      id: params.id
+    }
+    // request api
+    request('/api/[[model]]/delete', query).then(
+      rawData => resolve({ success: true, id: params.id }),
+      reject
+    )
+  });
+}

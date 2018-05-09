@@ -1,0 +1,41 @@
+import { buildCRUDReducers, mergeReducers } from '../reducerHelper'
+
+const [[model]]CRUDReducers =  buildCRUDReducers('[[model]]')// Edit represents create and update action
+
+const [[model]]ListMainReducer = mergeReducers(
+  [[model]]CRUDReducers.[[model]]List, [[model]]CRUDReducers.[[model]]Delete)
+const [[model]]List = (state, action) => {
+  const resultState = [[model]]ListMainReducer(state, action)
+  switch (action.type) {
+    // Update list after delete succeeded
+    case '[[model]]/delete/success':
+      return {
+        ...resultState,
+        list: resultState.list.filter(item => item.id !== action.payload.id)
+      }
+    default:
+      return resultState
+  }
+}
+
+const [[model]]DetailMainReducer = mergeReducers(
+  [[model]]CRUDReducers.[[model]]Detail, [[model]]CRUDReducers.[[model]]Edit)
+const [[model]]Detail = (state, action) => {
+  const resultState = [[model]]DetailMainReducer(state, action)
+  switch (action.type) {
+    // Reset data when location changes
+    case '@@router/LOCATION_CHANGE':
+      return {
+        ...resultState,
+        fetching: false,
+        info: {}
+      }
+    default:
+      return resultState
+  }
+}
+
+export default {
+  [[model]]List,
+  [[model]]Detail
+}

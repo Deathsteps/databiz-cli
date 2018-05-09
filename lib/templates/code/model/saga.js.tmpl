@@ -1,0 +1,17 @@
+// @flow
+import {
+  request[[Model]]List,
+  request[[Model]]Detail,
+  request[[Model]]Update,
+  request[[Model]]Delete
+} from './service'
+import { buildRequestSagas } from '../sagaHelper'
+
+export default [
+  ...buildRequestSagas({
+    'list': request[[Model]]List,
+    'detail': request[[Model]]Detail,
+    'edit': request[[Model]]Update,
+    'delete': request[[Model]]Delete
+  }, '[[model]]'),
+]
