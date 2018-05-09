@@ -1,0 +1,63 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import { Spin } from 'antd'
+import Notify from '../../components/Notify'
+import _ from 'lodash'
+
+import InfoForm from './InfoForm'
+
+class [[Model]]View extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = { createMode: false }
+    this.notify = new Notify(this, 'edit')
+  }
+
+  componentDidMount () {
+    const { params } = this.props.match
+    if (_.isEmpty(params)) {
+      // Location is [[model]]/create now
+      this.setState({
+        createMode: true
+      })
+      this.props.dispatch({ type: '[[model]]/resetInfo' })
+    } else {
+      this.props.dispatch({
+        type: '[[model]]/detail/request',
+        payload: { id: +params.id }
+      })
+    }
+  }
+
+  save = (info) => {
+    this.props.dispatch({
+      type: '[[model]]/edit/request',
+      payload: {
+        id: this.props.info.id,
+        ...info
+      }
+    })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.notify.notify(nextProps)
+  }
+
+  render () {
+    let spinDisplayed = this.props.fetching || this.props.editing
+    let info = this.props.info
+    return (
+      <div className="view">
+        <div className="view-header">
+          <h2>{this.state.createMode ? 'New [[Model]]' : 'Edit [[Model]]' }</h2>
+          <a href="javascript:history.go(-1);">Back</a>
+        </div>
+        <InfoForm info={info} onSave={this.save}/>
+        { spinDisplayed && <div className="spin-mask"></div> }
+        { spinDisplayed && <Spin className="container-spin" size="large" tip="Loading..."/> }
+      </div>
+    )
+  }
+}
+
+export default connect(state => state.[[model]]Detail)([[Model]]View)

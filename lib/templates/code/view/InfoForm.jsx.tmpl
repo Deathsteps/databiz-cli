@@ -1,0 +1,71 @@
+import * as React from 'react'
+import { Form, Input, Select, InputNumber, Button } from 'antd'
+import _ from 'lodash'
+
+const FormItem = Form.Item
+// const InputGroup = Input.Group
+const Option = Select.Option
+
+const FORM_ITEM_LAYOUT = {
+  labelCol: {
+    xs: { span: 24 },
+    sm: { span: 6 },
+  },
+  wrapperCol: {
+    xs: { span: 24 },
+    sm: { span: 18 },
+  },
+};
+type Props = {
+  info: Object,
+  onSave: Function
+}
+class InfoForm extends React.Component<Props> {
+  handleSave = () => {
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.onSave(values)
+      }
+    });
+  }
+
+  getFieldsConfig (info) {
+    let config = ([[fieldConfigStr]])
+    // fill in initialValue
+    for (var key in config) {
+      if (info[key] !== undefined) {
+        config[key].initialValue = info[key]
+      }
+    }
+    return config
+  }
+
+  render () {
+    const { getFieldDecorator } = this.props.form
+    const fieldsConfig = this.getFieldsConfig(this.props.info || {})
+    return (
+      <Form style={{ marginRight: 24 }}>
+        {
+          fieldsConfig.id.initialValue ?
+            <FormItem label="ID" {...FORM_ITEM_LAYOUT}>
+              {fieldsConfig.id.initialValue}
+            </FormItem> : null
+        }
+        [[formItemsStr]]
+        <Form.Item style={{ textAlign: 'center' }}>
+          <Button type="primary" onClick={this.handleSave}>Save</Button>
+        </Form.Item>
+      </Form>
+    )
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (this.props.info !== nextProps.info && _.isEmpty(nextProps.info)) {
+      const fieldsConfig = this.getFieldsConfig(nextProps.info)
+      const fieldValues = _.mapValues(fieldsConfig, 'initialValue')
+      this.props.form.setFieldsValue(fieldValues)
+    }
+  }
+}
+
+export default Form.create()(InfoForm)

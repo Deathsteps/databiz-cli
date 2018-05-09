@@ -1,0 +1,72 @@
+// @flow
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+
+import { Table, Divider, Popconfirm, Icon } from 'antd'
+
+import type { [[Model]] } from '../../models/[[Model]]/service'
+
+const { Column } = Table
+
+type Props = {
+  fetching: boolean,
+  pageIndex: number,
+  pageSize: number,
+  totalCount: ?number,
+  dataSource: ?Array<Object>,
+  onPage: Function,
+  onPageSizeChange: Function,
+  onDelete: Function
+}
+const DataTable = (props: Props) => {
+  const {
+    dataSource, fetching,
+    totalCount, pageIndex, pageSize,
+    onPage, onPageSizeChange,
+    onDelete
+  } = props
+  const pagination = {
+    total: totalCount,
+    current: pageIndex,
+    pageSize: pageSize,
+    onChange: onPage,
+    showSizeChanger: true,
+    pageSizeOptions: ['10', '20', '50', '100'],
+    onShowSizeChange: onPageSizeChange,
+    showQuickJumper: true,
+    showTotal: total => `Total: ${total}`
+  }
+  const title = (
+    <div className="data-table-title">
+      <Link to="/[[model]]/create" className="lnk-button"><Icon type="plus-circle-o" /> New [[Model]]</Link>
+    </div>
+  )
+  return (
+    <div className="data-table">
+      <Table
+        dataSource={dataSource}
+        rowKey={ record => record.id }
+        loading={fetching}
+        pagination={pagination}
+        title={() => title}
+      >
+        [[columnStr]]
+        <Column
+          title="Actions"
+          key="action"
+          render={(text, record: [[Model]]) => (
+            <span>
+              <Link to={`/[[model]]/edit/${record.id}`}>Detail</Link> &nbsp;&nbsp;
+              <Popconfirm title="Are you sure?" okText="Sure" cancelText="Cancel"
+                onConfirm={() => onDelete(record.id)} >
+                <a className="lnk-unlock">Delete</a>
+              </Popconfirm>
+            </span>
+          )}
+        />
+      </Table>
+    </div>
+  )
+}
+
+export default DataTable

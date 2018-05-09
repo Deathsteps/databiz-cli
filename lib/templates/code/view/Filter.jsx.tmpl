@@ -1,0 +1,45 @@
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { Card, Row, Col, Form, Input, InputNumber, Select, Button } from 'antd';
+
+const { Option } = Select;
+
+class Filter extends Component {
+
+  static propTypes = {
+    onFilter: PropTypes.func
+  }
+
+  handleSearch = (e) => {
+    e.preventDefault();
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        this.props.onFilter(values)
+      }
+    });
+  }
+
+  handleReset = () => {
+    this.props.form.resetFields()
+  }
+
+  getFieldConfig (): Object {
+    return ([[filterFieldConfigStr]])
+  }
+
+  renderForm () {
+    const { getFieldDecorator } = this.props.form;
+    const fieldsConfig = this.getFieldConfig()
+    return (
+      <Card>
+        [[filterFormStr]]
+      </Card>
+    )
+  }
+
+  render() {
+    return this.renderForm();
+  }
+}
+
+export default Form.create()(Filter)

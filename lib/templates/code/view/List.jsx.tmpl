@@ -1,0 +1,41 @@
+import React from 'react'
+import { connect } from 'react-redux'
+import ListPageView from '../../components/ListPageView'
+import Notify from '../../components/Notify'
+import Filter from './Filter'
+import DataTable from './DataTable'
+
+class [[Model]]List extends ListPageView {
+  constructor(props) {
+    super(props)
+    this.modelName = '[[model]]'
+    this.notify = new Notify(this, 'lock')
+  }
+
+  getFilterType () {
+    return Filter
+  }
+
+  getDataTableType () {
+    return DataTable
+  }
+
+  getExtraDataTableProps () {
+    return {
+      onDelete: this.handle[[Model]]Delete
+    }
+  }
+
+  handle[[Model]]Delete = (id) => {
+    this.props.dispatch({
+      type: '[[model]]/delete/request',
+      payload: { id }
+    })
+  }
+
+  componentWillReceiveProps (nextProps) {
+    this.notify.notify(nextProps)
+  }
+}
+
+export default connect(state => state.[[model]]List)([[Model]]List)
