@@ -7,11 +7,11 @@ import { find } from 'lodash/fp'
 
 import { mainRoutes } from '../common/routes'
 
-const SubMenu = Menu.SubMenu
-
-const OPEN_KEYS = {
-  "resources": ["contact"]
-}
+// const SubMenu = Menu.SubMenu
+//
+// const OPEN_KEYS = {
+//   "resources": ["contact"]
+// }
 
 class LayoutMenu extends React.Component {
 
@@ -25,16 +25,16 @@ class LayoutMenu extends React.Component {
     return route ? [route.nav] : []
   }
 
-  getMenuOpenKeys (selectedKeys) {
-    return selectedKeys.map(item => {
-      for(let key in OPEN_KEYS) {
-        if (OPEN_KEYS[key].indexOf(item) > -1) {
-          return key
-        }
-      }
-      return ''
-    })
-  }
+  // getMenuOpenKeys (selectedKeys) {
+  //   return selectedKeys.map(item => {
+  //     for(let key in OPEN_KEYS) {
+  //       if (OPEN_KEYS[key].indexOf(item) > -1) {
+  //         return key
+  //       }
+  //     }
+  //     return ''
+  //   })
+  // }
 
   render () {
     const selectedKeys = this.getMenuSelectedKeys()
@@ -43,20 +43,18 @@ class LayoutMenu extends React.Component {
         mode="inline"
         className="layout-menu"
         selectedKeys={selectedKeys}
-        defaultOpenKeys={this.getMenuOpenKeys(selectedKeys)}
+        // defaultOpenKeys={this.getMenuOpenKeys(selectedKeys)}
       >
         <Menu.Item key="home" >
           <Link to="/" className="link">
             <Icon type="home" /> Home
           </Link>
         </Menu.Item>
-        <SubMenu key="resources" title={<span><Icon type="appstore" /><span>Contact</span></span>}>
-          <Menu.Item key="contact">
-            <Link to="/contact" className="link">
-              Contact
-            </Link>
-          </Menu.Item>
-        </SubMenu>
+        <Menu.Item key="contact" >
+          <Link to="/contact" className="link">
+            <Icon type="appstore" /> Contact
+          </Link>
+        </Menu.Item>
       </Menu>
     )
   }
